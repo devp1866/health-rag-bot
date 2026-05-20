@@ -5,6 +5,19 @@ from src.chain import HealthRAGChain
 from src.retriever import HybridRetriever
 from src.vectorstore import load_vectorstore, load_bm25_index
 import config
+from src.health import warmup_model  # Ensure warmup_model is defined in health.py
+
+
+# app.py — first thing before loading chain
+from src.health import check_ollama_ready
+import sys
+
+if not check_ollama_ready():
+    print("ERROR: Ollama not ready. See logs above.")
+    sys.exit(1)
+
+# ... rest of app loads only if Ollama is confirmed ready
+warmup_model()  # Optional: warm up model before loading chain
 
 logging.basicConfig(level=logging.INFO)
 

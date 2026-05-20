@@ -2,8 +2,8 @@ import pickle
 import logging
 from pathlib import Path
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain.schema import Document
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.documents import Document
 from rank_bm25 import BM25Okapi
 import config
 
